@@ -17,59 +17,58 @@ If you are developing a production application, we recommend updating the config
 
 ```js
 export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+  # Portfólio
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+  Site pessoal de Nicolas Letti para apresentar sua trajetória, habilidades e
+  projetos de desenvolvimento.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+  ## MVP
 
-```
+  O primeiro MVP será uma página única com cinco áreas principais:
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+  - **Início**: apresentação breve e chamada para conhecer o trabalho.
+  - **Sobre mim**: resumo da trajetória e dos interesses profissionais.
+  - **Projetos**: seleção de trabalhos com descrição, tecnologias e links.
+  - **Habilidades**: tecnologias e práticas conhecidas.
+  - **Contato**: formas de entrar em contato e links profissionais.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+  A implementação atual contém o cabeçalho e a seção inicial. As demais áreas
+  estão documentadas como próximas etapas em [`docs/backlog.md`](docs/backlog.md).
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+  ## Tecnologias
 
-```
+  - React
+  - TypeScript
+  - Vite
+  - CSS
+  - ESLint
+
+  ## Desenvolvimento
+
+  Instale as dependências:
+
+  ```bash
+  npm install
+  ```
+
+  Inicie o servidor de desenvolvimento:
+
+  ```bash
+  npm run dev
+  ```
+
+  Valide o projeto antes de publicar:
+
+  ```bash
+  npm run lint
+  npm run build
+  ```
+
+  ## Documentação do projeto
+
+  - [Objetivo e ideia inicial](docs/objetivo.md)
+  - [Conteúdo do MVP](docs/conteudo.md)
+  - [Direção de design](docs/design.md)
+  - [Decisões técnicas](docs/decisoes.md)
+  - [Backlog](docs/backlog.md)
+

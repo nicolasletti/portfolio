@@ -1,0 +1,42 @@
+.hero-section {
+	margin: 0 auto;
+	max-width: 760px;
+	padding: 128px 32px 160px;
+	text-align: left;
+}
+
+.hero-section__eyebrow {
+	color: var(--accent);
+	font-size: 0.85rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.hero-section h1 {
+	font-size: clamp(2.75rem, 7vw, 5.5rem);
+	line-height: 0.98;
+	margin: 20px 0 28px;
+	max-width: 760px;
+}
+
+.hero-section__description {
+	font-size: 1.15rem;
+	max-width: 580px;
+}
+
+.hero-section__action {
+	background: var(--accent);
+
+}
+
+.hero-section__action:hover,
+.hero-section__action:focus-visible {
+	background: var(--accent-border);
+}
+
+@media (max-width: 640px) {
+	.hero-section {
+		padding: 80px 20px 112px;
+	}
+}

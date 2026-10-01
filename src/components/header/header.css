@@ -1,0 +1,40 @@
+.site-header {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	padding: 24px 32px;
+}
+
+.site-header__brand {
+	color: var(--text-h);
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.site-header nav {
+	display: flex;
+	gap: 24px;
+}
+
+.site-header nav a {
+	color: var(--text);
+	text-decoration: none;
+}
+
+.site-header nav a:hover,
+.site-header nav a:focus-visible {
+	color: var(--accent);
+}
+
+@media (max-width: 640px) {
+	.site-header {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 16px;
+		padding: 20px;
+	}
+
+	.site-header nav {
+		gap: 16px;
+	}
+}

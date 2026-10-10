@@ -3,7 +3,7 @@
 ## Próximas tarefas do MVP
 
 - [ ] Criar seção Habilidades
-- [ ] Criar seção Contato
+- [ ] Revisar textos e links dos projetos em `src/data/projects.ts`
 - [ ] Revisar links e textos do conteúdo
 - [ ] Validar layout em telas pequenas
 - [ ] Revisar acessibilidade e navegação por teclado
@@ -22,3 +22,5 @@
 - [x] Criar seção Projetos
 - [x] Adicionar tema escuro com alternância manual
 - [x] Menu responsivo e link para pular ao conteúdo
+- [x] Redesenhar seção Projetos com impacto e stack
+- [x] Criar rodapé com informações de contato

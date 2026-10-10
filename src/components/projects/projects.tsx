@@ -1,96 +1,67 @@
 import { useEffect, useState } from 'react'
+import { profile } from '../../data/profile'
+import { projects } from '../../data/projects'
 import './projects.css'
 
-type GitHubRepository = {
-  id: number
-  name: string
-  html_url: string
-  description: string | null
-  language: string | null
-  stargazers_count: number
-  fork: boolean
+type GitHubStats = {
+  stars: number
 }
 
-const GITHUB_USERNAME = 'nicolasletti'
-const FEATURED_REPOSITORIES = ['Projeto-Saude-Maix', 'portfolio']
+const GITHUB_USERNAME = profile.github.split('/').pop() ?? ''
 
-function isGitHubRepository(value: unknown): value is GitHubRepository {
-  if (typeof value !== 'object' || value === null) {
-    return false
-  }
-
-  const repository = value as Record<string, unknown>
-
+function isStargazerPayload(
+  value: unknown,
+): value is { stargazers_count: number } {
   return (
-    typeof repository.id === 'number' &&
-    typeof repository.name === 'string' &&
-    typeof repository.html_url === 'string' &&
-    (typeof repository.description === 'string' || repository.description === null) &&
-    (typeof repository.language === 'string' || repository.language === null) &&
-    typeof repository.stargazers_count === 'number' &&
-    typeof repository.fork === 'boolean'
+    typeof value === 'object' &&
+    value !== null &&
+    typeof (value as Record<string, unknown>).stargazers_count === 'number'
   )
 }
 
 function Projects() {
-  const [repositories, setRepositories] = useState<GitHubRepository[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [errorMessage, setErrorMessage] = useState('')
+  const [stats, setStats] = useState<Record<string, GitHubStats>>({})
 
+  // A API do GitHub só complementa os cards (estrelas). Se falhar, os dados
+  // curados em src/data/projects.ts continuam sendo exibidos.
   useEffect(() => {
     const controller = new AbortController()
 
-    async function loadRepositories() {
-      try {
-        const responses = await Promise.all(
-          FEATURED_REPOSITORIES.map(async (repositoryName) => {
+    async function loadStats() {
+      const entries = await Promise.all(
+        projects.map(async ({ repo }) => {
+          try {
             const response = await fetch(
-              `https://api.github.com/repos/${GITHUB_USERNAME}/${repositoryName}`,
+              `https://api.github.com/repos/${GITHUB_USERNAME}/${repo}`,
               {
-                headers: {
-                  Accept: 'application/vnd.github+json',
-                },
+                headers: { Accept: 'application/vnd.github+json' },
                 signal: controller.signal,
               },
             )
 
-            if (!response.ok) {
-              throw new Error(
-                `Não foi possível importar o repositório "${repositoryName}" (status ${response.status}).`,
-              )
-            }
+            if (!response.ok) return null
 
             const data: unknown = await response.json()
 
-            if (!isGitHubRepository(data)) {
-              throw new Error(
-                `A resposta do repositório "${repositoryName}" não está no formato esperado.`,
-              )
-            }
+            return isStargazerPayload(data)
+              ? ([repo, { stars: data.stargazers_count }] as const)
+              : null
+          } catch {
+            return null
+          }
+        }),
+      )
 
-            return data
-          }),
-        )
+      if (controller.signal.aborted) return
 
-        setRepositories(responses.filter((repository) => !repository.fork))
-      } catch (error) {
-        if (error instanceof DOMException && error.name === 'AbortError') {
-          return
-        }
-
-        setErrorMessage(
-          error instanceof Error
-            ? error.message
-            : 'Não foi possível carregar os projetos do GitHub.',
-        )
-      } finally {
-        if (!controller.signal.aborted) {
-          setIsLoading(false)
-        }
-      }
+      setStats(
+        Object.fromEntries(
+          entries.filter((entry) => entry !== null),
+        ) as Record<string, GitHubStats>,
+      )
     }
 
-    void loadRepositories()
+    void loadStats()
 
     return () => controller.abort()
   }, [])
@@ -98,52 +69,68 @@ function Projects() {
   return (
     <section className="projects-section" id="projetos">
       <div className="projects-section__heading">
-        <p className="projects-section__eyebrow">Código aberto</p>
+        <p className="projects-section__eyebrow">· 02 · Projetos</p>
         <h2>Projetos em destaque</h2>
-        <p>Uma seleção dos meus projetos públicos mais recentes no GitHub.</p>
+        <p>Uma seleção dos meus projetos públicos no GitHub.</p>
       </div>
 
-      {isLoading && <p className="projects-section__status">Carregando projetos...</p>}
+      <div className="projects-grid">
+        {projects.map((project, index) => {
+          const repoUrl = `${profile.github}/${project.repo}`
+          const stars = stats[project.repo]?.stars
 
-      {!isLoading && errorMessage && (
-        <div className="projects-section__status projects-section__status--error" role="alert">
-          <p>Não foi possível carregar os projetos agora.</p>
-          <small>{errorMessage}</small>
-        </div>
-      )}
-
-      {!isLoading && !errorMessage && repositories.length === 0 && (
-        <p className="projects-section__status">Nenhum projeto público encontrado.</p>
-      )}
-
-      {!isLoading && !errorMessage && repositories.length > 0 && (
-        <div className="projects-grid">
-          {repositories.map((repository) => (
-            <article className="project-card" key={repository.id}>
+          return (
+            <article className="project-card" key={project.repo}>
               <div>
                 <div className="project-card__meta">
-                  <span>GitHub</span>
-                  {repository.language && <span>{repository.language}</span>}
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <span>{project.repo}</span>
                 </div>
-                <h3>{repository.name}</h3>
-                <p>{repository.description ?? 'Projeto sem descrição.'}</p>
+                <h3>{project.title}</h3>
+                <p>{project.summary}</p>
+
+                {project.impact && (
+                  <div className="project-card__block">
+                    <h4>Impacto</h4>
+                    <p>{project.impact}</p>
+                  </div>
+                )}
+
+                <div className="project-card__block">
+                  <h4>Stack</h4>
+                  <ul className="project-card__stack">
+                    {project.stack.map((tech) => (
+                      <li key={tech}>{tech}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
+
               <div className="project-card__footer">
-                <span aria-label={`${repository.stargazers_count} estrelas`}>
-                  ★ {repository.stargazers_count}
+                <span>
+                  {stars !== undefined && (
+                    <span aria-label={`${stars} estrelas`}>★ {stars}</span>
+                  )}
                 </span>
-                <a href={repository.html_url} target="_blank" rel="noreferrer">
-                  Ver projeto <span aria-hidden="true">↗</span>
-                </a>
+                <span className="project-card__links">
+                  {project.demoUrl && (
+                    <a href={project.demoUrl} target="_blank" rel="noreferrer">
+                      Demo <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                  <a href={repoUrl} target="_blank" rel="noreferrer">
+                    Repositório <span aria-hidden="true">↗</span>
+                  </a>
+                </span>
               </div>
             </article>
-          ))}
-        </div>
-      )}
+          )
+        })}
+      </div>
 
       <a
         className="projects-section__profile-link"
-        href={`https://github.com/${GITHUB_USERNAME}`}
+        href={profile.github}
         target="_blank"
         rel="noreferrer"
       >

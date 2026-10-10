@@ -5,6 +5,7 @@ function About() {
 	return (
 		<section className="about-section" id="sobre">
 			<div className="about-section__text">
+				<p className="about-section__eyebrow">· 01 · Sobre</p>
 				<h2>Sobre mim</h2>
 				<p>
 					Sou {profile.name}, estudante de {profile.course}, atualmente no{' '}

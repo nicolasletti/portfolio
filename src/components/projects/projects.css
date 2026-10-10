@@ -1,12 +1,15 @@
 .projects-section {
   border-top: 1px solid var(--border);
-  padding: 96px 32px 112px;
-  text-align: left;
+  padding: 96px var(--gutter) 112px;
 }
 
 .projects-section__heading {
   margin: 0 auto 40px;
-  max-width: 760px;
+  max-width: var(--content-width);
+}
+
+.projects-section__heading p:last-child {
+  max-width: 580px;
 }
 
 .projects-section__eyebrow {
@@ -32,8 +35,9 @@
 }
 
 .project-card {
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -125,7 +129,7 @@
 
 @media (max-width: 640px) {
   .projects-section {
-    padding: 72px 20px 88px;
+    padding: 72px var(--gutter) 88px;
   }
 
   .projects-grid {

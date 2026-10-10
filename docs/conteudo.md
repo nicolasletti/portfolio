@@ -8,32 +8,34 @@ Apresentação atual:
 
 Texto de apoio atual:
 
-> Sou Nicolas Letti, desenvolvedor focado em criar soluções digitais que sejam
-> intuitivas e eficientes.
+> Sou Nicolas Letti, estudante de Ciência da Computação e desenvolvedor focado
+> em criar soluções digitais intuitivas e eficientes.
 
 ## Sobre mim
 
-Área para um resumo profissional, interesses na área de desenvolvimento e
-objetivos de carreira.
+Resumo pessoal, formação (Ciência da Computação, 4º semestre) e foco atual.
+Os dados pessoais ficam em `src/data/profile.ts`.
 
 ## Projetos
 
-Cada projeto deve apresentar:
+Os projetos ficam curados em `src/data/projects.ts`. Cada projeto apresenta:
 
-- Nome
-- Problema ou objetivo
-- Breve descrição da solução
-- Tecnologias utilizadas
+- Nome do repositório e título
+- Resumo do problema ou objetivo
+- Impacto (opcional, somente quando houver informação real)
+- Stack utilizada
 - Link para demonstração, quando existir
-- Link para o repositório, quando for público
+- Link para o repositório
+
+A API do GitHub só complementa os cards (estrelas). Se ela falhar, os dados
+curados continuam sendo exibidos.
 
 ## Habilidades
 
-Área para listar tecnologias, linguagens e práticas que façam parte da
-experiência real do autor. A lista deve ser revisada antes da publicação para
-evitar apresentar conhecimentos ainda não praticados.
+Ainda não implementada. Deve listar tecnologias, linguagens e práticas que
+façam parte da experiência real do autor, revisadas antes da publicação.
 
 ## Contato
 
-Área para links profissionais e uma forma direta de contato. Os endereços
-definitivos ainda precisam ser informados e validados.
+Não há seção própria. As informações de contato (e-mail, GitHub e LinkedIn)
+ficam no rodapé, que também responde à âncora `#contato`.

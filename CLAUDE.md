@@ -19,10 +19,11 @@ Não há framework de testes configurado. A validação antes de publicar é `np
 
 ## Arquitetura
 
-- `src/App.tsx` monta a página: link "pular para o conteúdo" + `Header` + `<main id="conteudo">` com `Hero`, `About`, `Projects`. A navegação é por âncoras (`scroll-padding-top` usa `--header-height`).
+- `src/App.tsx` monta a página: link "pular para o conteúdo" + `Header` + `<main id="conteudo">` com `Hero`, `About`, `Projects` + `Footer`. A navegação é por âncoras (`scroll-padding-top` usa `--header-height`).
 - Cada seção/componente fica em `src/components/<nome>/<nome>.tsx` com um `<nome>.css` ao lado, importado diretamente pelo componente (CSS puro, sem CSS-in-JS nem biblioteca de UI). Novas áreas com estrutura ou comportamento próprio devem seguir esse padrão.
-- `src/data/profile.ts` é a fonte única dos dados pessoais (nome, curso, semestre, e-mail, GitHub, LinkedIn); `Hero` e `About` leem dele — não duplique esses textos nos componentes.
-- `Projects` não tem lista estática: busca em runtime, na API pública do GitHub, os repositórios listados em `FEATURED_REPOSITORIES` (usuário em `GITHUB_USERNAME`), validando o formato com o type guard `isGitHubRepository` e cancelando com `AbortController`. Para destacar outro projeto, adicione o nome do repositório nessa constante.
+- `src/data/profile.ts` é a fonte única dos dados pessoais (nome, curso, semestre, e-mail, GitHub, LinkedIn); `Hero`, `About`, `Footer` e `Projects` leem dele — não duplique esses textos nos componentes.
+- `src/data/projects.ts` é a lista curada de projetos (repositório, título, resumo, impacto opcional, stack, demo opcional). `Projects` renderiza essa lista e usa a API pública do GitHub só para complementar com as estrelas de cada repositório (validação com type guard e cancelamento via `AbortController`); se a API falhar, os cards continuam aparecendo. Para destacar outro projeto, adicione um item em `projects.ts`; só inclua `impact` quando houver informação real.
+- `Footer` concentra as informações de contato e responde à âncora `#contato` (não existe seção de Contato nem formulário).
 
 ### Tema claro/escuro
 
@@ -36,7 +37,7 @@ O tema é definido em três pontos que precisam continuar coerentes:
 
 - `docs/` guarda objetivo, conteúdo do MVP, direção de design, decisões técnicas e `backlog.md`. Ao concluir ou mudar algo relevante, atualize os arquivos correspondentes (principalmente o backlog e `decisoes.md`).
 - `.github/agents/documentador-markdown.agent.md` define um agente que só edita Markdown (`README.md` e `docs/`) e não deve inventar funcionalidades — use-o como referência de tom ao escrever docs.
-- O `README.md` descreve o projeto e os comandos; `docs/design.md` e `docs/backlog.md` indicam que a seção **Habilidades** e a seção **Contato** ainda não foram implementadas (e Habilidades ainda precisa entrar na navegação do `Header`).
+- O `README.md` descreve o projeto e os comandos; `docs/design.md` e `docs/backlog.md` indicam que a seção **Habilidades** ainda não foi implementada e precisa entrar na navegação do `Header`. Contato é só o rodapé, por decisão registrada em `docs/decisoes.md`.
 - Convenção de commits do histórico: `feat: ...` (Conventional Commits em inglês); o trabalho acontece em branches `feat/*` a partir de `main`.
 
 ## Lint / TypeScript

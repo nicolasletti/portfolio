@@ -4,9 +4,6 @@ import './skills.css'
 function Skills() {
 	return (
 		<section className="skills-section" id="skills">
-			<p className="eyebrow">
-				· 02 · <span>Skills</span>
-			</p>
 			<h2>
 				Minhas <em>ferramentas</em>
 				<span className="title-dot">.</span>

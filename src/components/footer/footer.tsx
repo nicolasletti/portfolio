@@ -6,9 +6,6 @@ function Footer() {
 		<footer className="site-footer" id="contato">
 			<div className="site-footer__inner">
 				<div>
-					<p className="eyebrow">
-						· 04 · <span>Contato</span>
-					</p>
 					<h2>
 						Vamos <em>conversar</em>
 						<span className="title-dot">.</span>
@@ -32,12 +29,9 @@ function Footer() {
 							linkedin.com/in/nicolas-letti
 						</a>
 					</li>
+
 				</ul>
 			</div>
-
-			<p className="site-footer__copy">
-				© {new Date().getFullYear()} {profile.name}
-			</p>
 		</footer>
 	)
 }

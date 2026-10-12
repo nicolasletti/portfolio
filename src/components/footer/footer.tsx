@@ -6,28 +6,33 @@ function Footer() {
 		<footer className="site-footer" id="contato">
 			<div className="site-footer__inner">
 				<div>
-					<p className="site-footer__name">{profile.name}</p>
-					<p>
-						{profile.course} · {profile.semester}
+					<p className="eyebrow">
+						· 04 · <span>Contato</span>
 					</p>
+					<h2>
+						Vamos <em>conversar</em>
+						<span className="title-dot">.</span>
+					</h2>
 				</div>
 
-				<nav aria-label="Navegação do rodapé">
-					<h2>Navegação</h2>
-					<a href="#sobre">Sobre</a>
-					<a href="#projetos">Projetos</a>
-				</nav>
-
-				<div>
-					<h2>Contato</h2>
-					<a href={`mailto:${profile.email}`}>{profile.email}</a>
-					<a href={profile.github} target="_blank" rel="noreferrer">
-						GitHub <span aria-hidden="true">↗</span>
-					</a>
-					<a href={profile.linkedin} target="_blank" rel="noreferrer">
-						LinkedIn <span aria-hidden="true">↗</span>
-					</a>
-				</div>
+				<ul className="site-footer__links">
+					<li>
+						<strong>E-mail</strong>
+						<a href={`mailto:${profile.email}`}>{profile.email}</a>
+					</li>
+					<li>
+						<strong>GitHub</strong>
+						<a href={profile.github} target="_blank" rel="noreferrer">
+							github.com/nicolasletti
+						</a>
+					</li>
+					<li>
+						<strong>LinkedIn</strong>
+						<a href={profile.linkedin} target="_blank" rel="noreferrer">
+							linkedin.com/in/nicolas-letti
+						</a>
+					</li>
+				</ul>
 			</div>
 
 			<p className="site-footer__copy">

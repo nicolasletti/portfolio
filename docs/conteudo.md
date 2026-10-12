@@ -20,20 +20,19 @@ Os dados pessoais ficam em `src/data/profile.ts`.
 
 Os projetos ficam curados em `src/data/projects.ts`. Cada projeto apresenta:
 
-- Nome do repositório e título
+- Nome, categoria e subtítulo
 - Resumo do problema ou objetivo
-- Impacto (opcional, somente quando houver informação real)
 - Stack utilizada
+- Print ou GIF (opcional)
 - Link para demonstração, quando existir
-- Link para o repositório
+- Link para o repositório (usado também no comando `git clone`)
 
-A API do GitHub só complementa os cards (estrelas). Se ela falhar, os dados
-curados continuam sendo exibidos.
+Não há chamada à API do GitHub; tudo vem de `src/data/projects.ts`.
 
-## Habilidades
+## Skills
 
-Ainda não implementada. Deve listar tecnologias, linguagens e práticas que
-façam parte da experiência real do autor, revisadas antes da publicação.
+Tecnologias agrupadas em `src/data/skills.ts`. Devem fazer parte da experiência
+real do autor e ser revisadas antes da publicação.
 
 ## Contato
 

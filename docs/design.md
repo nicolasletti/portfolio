@@ -2,10 +2,24 @@
 
 ## Estrutura
 
-O MVP será uma página única com navegação por âncoras para as áreas principais.
-O cabeçalho atual já utiliza links para `Início`, `Sobre`, `Projetos` e
-`Contato`; a seção `Habilidades` ainda precisa ser incluída na navegação quando
-o conteúdo for implementado.
+Página única com navegação por âncoras. O cabeçalho tem links para `Sobre`,
+`Skills`, `Projetos` e `Contato`; `Início` é o nome no canto. As áreas, em
+ordem: Início (com foto), Sobre, Skills, Projetos e rodapé de contato.
+
+## Identidade visual
+
+- **Tema claro:** fundo bege `#fffdf2`, texto preto e verde-oliva `#5f6e33`
+  como cor de destaque. Há tema escuro com os mesmos tons, alternado pelo botão
+  do cabeçalho.
+- **Tipografia:** Ubuntu para texto e títulos (com um trecho em itálico suave,
+  como em "Sobre *mim*.") e Ubuntu Mono nos trechos de terminal.
+- **Terminal só nos projetos:** o aspecto de terminal fica restrito ao painel
+  "Prompt de Comando" da seção Projetos, preto nos dois temas. O restante do
+  site mantém um visual claro e limpo.
+- **Projetos:** carrossel com cartão de visualização à esquerda e o painel de
+  terminal à direita (`type sobre.txt`, `type stack.txt` e `git clone` com botão
+  de copiar). Os botões de repositório e demo ficam fora do terminal.
+- Os tokens (cores, fontes, raios) ficam em `src/index.css`.
 
 ## Princípios
 
@@ -16,8 +30,8 @@ o conteúdo for implementado.
 	decorativos.
 - Usar chamadas para ação curtas e objetivas.
 
-## Estado atual
+## Referência
 
-A primeira versão possui cabeçalho responsivo e uma seção inicial com título,
-texto de apoio e chamada para ver os projetos. Cores, tipografia e identidade
-visual definitiva ainda estão em aberto.
+A estrutura de seções numeradas (`· 01 · Sobre`) e o formato do carrossel de
+projetos foram inspirados em um portfólio de referência, mantendo identidade e
+conteúdo próprios.

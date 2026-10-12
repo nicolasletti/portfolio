@@ -26,9 +26,3 @@
 	margin: 0 0 8px;
 	text-transform: uppercase;
 }
-
-.skills-section__note {
-	color: var(--text-muted);
-	font-size: 0.875rem;
-	margin-top: 14px;
-}

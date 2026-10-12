@@ -32,10 +32,6 @@ function Projects() {
 
   return (
     <section className="projects-section" id="projetos">
-      <p className="eyebrow">
-        · 03 · <span>Portfólio</span>
-      </p>
-
       <div className="projects-section__heading">
         <h2>
           Projetos em <em>destaque</em>

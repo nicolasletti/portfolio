@@ -21,9 +21,6 @@ function Skills() {
 				))}
 			</div>
 
-			<p className="skills-section__note">
-				Somente tecnologias presentes nos meus repositórios.
-			</p>
 		</section>
 	)
 }

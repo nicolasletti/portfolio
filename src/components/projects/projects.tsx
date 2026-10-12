@@ -1,131 +1,161 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { profile } from '../../data/profile'
 import { projects } from '../../data/projects'
 import './projects.css'
 
-type GitHubStats = {
-  stars: number
-}
-
-const GITHUB_USERNAME = profile.github.split('/').pop() ?? ''
-
-function isStargazerPayload(
-  value: unknown,
-): value is { stargazers_count: number } {
-  return (
-    typeof value === 'object' &&
-    value !== null &&
-    typeof (value as Record<string, unknown>).stargazers_count === 'number'
-  )
+function pad(value: number) {
+  return String(value).padStart(2, '0')
 }
 
 function Projects() {
-  const [stats, setStats] = useState<Record<string, GitHubStats>>({})
+  const [index, setIndex] = useState(0)
+  const [copied, setCopied] = useState(false)
 
-  // A API do GitHub só complementa os cards (estrelas). Se falhar, os dados
-  // curados em src/data/projects.ts continuam sendo exibidos.
-  useEffect(() => {
-    const controller = new AbortController()
+  const total = projects.length
+  const project = projects[index]
+  const repoUrl = `${profile.github}/${project.repo}`
+  const cloneCommand = `git clone ${repoUrl}.git`
 
-    async function loadStats() {
-      const entries = await Promise.all(
-        projects.map(async ({ repo }) => {
-          try {
-            const response = await fetch(
-              `https://api.github.com/repos/${GITHUB_USERNAME}/${repo}`,
-              {
-                headers: { Accept: 'application/vnd.github+json' },
-                signal: controller.signal,
-              },
-            )
+  function goTo(next: number) {
+    setIndex((next + total) % total)
+    setCopied(false)
+  }
 
-            if (!response.ok) return null
-
-            const data: unknown = await response.json()
-
-            return isStargazerPayload(data)
-              ? ([repo, { stars: data.stargazers_count }] as const)
-              : null
-          } catch {
-            return null
-          }
-        }),
-      )
-
-      if (controller.signal.aborted) return
-
-      setStats(
-        Object.fromEntries(
-          entries.filter((entry) => entry !== null),
-        ) as Record<string, GitHubStats>,
-      )
+  async function copyCommand() {
+    try {
+      await navigator.clipboard.writeText(cloneCommand)
+      setCopied(true)
+    } catch {
+      // Sem permissão de área de transferência: o comando segue visível.
     }
-
-    void loadStats()
-
-    return () => controller.abort()
-  }, [])
+  }
 
   return (
     <section className="projects-section" id="projetos">
+      <p className="eyebrow">
+        · 03 · <span>Portfólio</span>
+      </p>
+
       <div className="projects-section__heading">
-        <p className="projects-section__eyebrow">· 02 · Projetos</p>
-        <h2>Projetos em destaque</h2>
-        <p>Uma seleção dos meus projetos públicos no GitHub.</p>
+        <h2>
+          Projetos em <em>destaque</em>
+          <span className="title-dot">.</span>
+        </h2>
+
+        <div className="projects-section__nav">
+          <p aria-live="polite">
+            <span>{pad(index + 1)}</span> / {pad(total)}
+          </p>
+          <button
+            type="button"
+            className="projects-section__round"
+            aria-label="Projeto anterior"
+            onClick={() => goTo(index - 1)}
+          >
+            <span aria-hidden="true">←</span>
+          </button>
+          <button
+            type="button"
+            className="projects-section__round"
+            aria-label="Próximo projeto"
+            onClick={() => goTo(index + 1)}
+          >
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
       </div>
 
-      <div className="projects-grid">
-        {projects.map((project, index) => {
-          const repoUrl = `${profile.github}/${project.repo}`
-          const stars = stats[project.repo]?.stars
+      <div className="projects-section__body">
+        <article className="project-preview" aria-label="Visualização do projeto">
+          <p className="project-preview__label">{project.label}</p>
 
-          return (
-            <article className="project-card" key={project.repo}>
+          {project.image ? (
+            <img
+              className="project-preview__media"
+              src={project.image}
+              alt={project.imageAlt ?? `Tela do projeto ${project.name}`}
+            />
+          ) : (
+            <div className="project-preview__media project-preview__media--empty" aria-hidden="true">
+              <span>~/{project.repo}</span>
+            </div>
+          )}
+
+          <div className="project-preview__title">
+            <h3>{project.name}</h3>
+            <p>{project.subtitle}</p>
+          </div>
+        </article>
+
+        <div className="projects-section__side">
+          <div className="terminal">
+            <div className="terminal__bar">
+              <span aria-hidden="true">▣</span>
+              <span>Prompt de Comando</span>
+            </div>
+
+            <div className="terminal__body">
               <div>
-                <div className="project-card__meta">
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                  <span>{project.repo}</span>
-                </div>
-                <h3>{project.title}</h3>
-                <p>{project.summary}</p>
+                <p className="terminal__prompt">
+                  C:\projetos\{project.repo}&gt; <span>type sobre.txt</span>
+                </p>
+                <p className="terminal__output">{project.about}</p>
+              </div>
 
-                {project.impact && (
-                  <div className="project-card__block">
-                    <h4>Impacto</h4>
-                    <p>{project.impact}</p>
-                  </div>
-                )}
+              <div>
+                <p className="terminal__prompt">
+                  C:\projetos\{project.repo}&gt; <span>type stack.txt</span>
+                </p>
+                <ul className="terminal__stack">
+                  {project.stack.map((tech) => (
+                    <li key={tech}>{tech}</li>
+                  ))}
+                </ul>
+              </div>
 
-                <div className="project-card__block">
-                  <h4>Stack</h4>
-                  <ul className="project-card__stack">
-                    {project.stack.map((tech) => (
-                      <li key={tech}>{tech}</li>
-                    ))}
-                  </ul>
+              <div>
+                <p className="terminal__prompt">
+                  C:\projetos&gt; <span>git clone</span>
+                </p>
+                <div className="terminal__clone">
+                  <code>{cloneCommand}</code>
+                  <button
+                    type="button"
+                    onClick={copyCommand}
+                    aria-label="Copiar comando git clone"
+                  >
+                    {copied ? 'Copiado ✓' : 'Copiar'}
+                  </button>
                 </div>
               </div>
 
-              <div className="project-card__footer">
-                <span>
-                  {stars !== undefined && (
-                    <span aria-label={`${stars} estrelas`}>★ {stars}</span>
-                  )}
-                </span>
-                <span className="project-card__links">
-                  {project.demoUrl && (
-                    <a href={project.demoUrl} target="_blank" rel="noreferrer">
-                      Demo <span aria-hidden="true">↗</span>
-                    </a>
-                  )}
-                  <a href={repoUrl} target="_blank" rel="noreferrer">
-                    Repositório <span aria-hidden="true">↗</span>
-                  </a>
-                </span>
-              </div>
-            </article>
-          )
-        })}
+              <p className="terminal__prompt" aria-hidden="true">
+                C:\projetos\{project.repo}&gt; <span className="terminal__cursor" />
+              </p>
+            </div>
+          </div>
+
+          <div className="projects-section__actions">
+            <a
+              className="button button--primary"
+              href={repoUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Abrir repositório <span aria-hidden="true">↗</span>
+            </a>
+            {project.demoUrl && (
+              <a
+                className="button"
+                href={project.demoUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Ver demo <span aria-hidden="true">↗</span>
+              </a>
+            )}
+          </div>
+        </div>
       </div>
 
       <a

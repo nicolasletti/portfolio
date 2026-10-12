@@ -1,23 +1,35 @@
 :root {
-  --text: #4b5563;
-  --text-h: #0f172a;
-  --bg: #fafafa;
-  --surface: #ffffff;
-  --border: #e5e7eb;
-  --code-bg: #f1f5f9;
-  --accent: #4f46e5;
-  --accent-bg: rgba(79, 70, 229, 0.08);
-  --accent-border: rgba(79, 70, 229, 0.45);
-  --on-accent: #ffffff;
+  --text: #2b2a26;
+  --text-h: #000000;
+  --text-muted: #5e5b50;
+  --text-soft: #7a7668;
+  --bg: #fffdf2;
+  --surface: #f5f2e3;
+  --border: #e2ddc8;
+  --border-strong: #cfc9b0;
+  --code-bg: #f5f2e3;
+  --accent: #5f6e33;
+  --accent-bg: rgba(95, 110, 51, 0.1);
+  --accent-border: rgba(95, 110, 51, 0.5);
+  --on-accent: #fffdf2;
   --shadow:
-    rgba(15, 23, 42, 0.08) 0 10px 15px -3px, rgba(15, 23, 42, 0.04) 0 4px 6px -2px;
+    rgba(43, 42, 38, 0.1) 0 10px 15px -3px, rgba(43, 42, 38, 0.05) 0 4px 6px -2px;
 
-  --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  /* Painel de terminal: mantém o mesmo visual nos dois temas. */
+  --term-bg: #000000;
+  --term-bar: #161616;
+  --term-border: #2a2a2a;
+  --term-text: #e8e5d6;
+  --term-muted: #8f8b7c;
+  --term-bright: #fffdf2;
+  --term-accent: #b5c17f;
+
+  --sans: 'Ubuntu', system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: var(--sans);
-  --mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  --mono: 'Ubuntu Mono', ui-monospace, Consolas, monospace;
 
   --radius: 12px;
-  --content-width: 1060px;
+  --content-width: 1120px;
   --gutter: 32px;
   --header-height: 72px;
 
@@ -44,16 +56,19 @@
 }
 
 :root[data-theme='dark'] {
-  --text: #a1a1aa;
-  --text-h: #f4f4f5;
-  --bg: #0b0d12;
-  --surface: #12151c;
-  --border: #23262f;
-  --code-bg: #1a1d26;
-  --accent: #818cf8;
-  --accent-bg: rgba(129, 140, 248, 0.14);
-  --accent-border: rgba(129, 140, 248, 0.5);
-  --on-accent: #0b0d12;
+  --text: #d6d3c4;
+  --text-h: #fffdf2;
+  --text-muted: #a8a495;
+  --text-soft: #8f8b7c;
+  --bg: #14140f;
+  --surface: #1c1c15;
+  --border: #2c2c22;
+  --border-strong: #3f3f30;
+  --code-bg: #1c1c15;
+  --accent: #b5c17f;
+  --accent-bg: rgba(181, 193, 127, 0.12);
+  --accent-border: rgba(181, 193, 127, 0.5);
+  --on-accent: #14140f;
   --shadow:
     rgba(0, 0, 0, 0.5) 0 10px 15px -3px, rgba(0, 0, 0, 0.3) 0 4px 6px -2px;
   color-scheme: dark;
@@ -89,22 +104,46 @@ h1,
 h2,
 h3 {
   font-family: var(--heading);
-  font-weight: 700;
+  font-weight: 500;
   color: var(--text-h);
 }
 
 h1 {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
   letter-spacing: -0.03em;
-  line-height: 1.05;
+  line-height: 1.02;
   margin: 0;
 }
 
 h2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-size: clamp(2rem, 5vw, 3.2rem);
   letter-spacing: -0.02em;
-  line-height: 1.15;
-  margin: 0 0 12px;
+  line-height: 1.05;
+  margin: 0 0 20px;
+}
+
+/* Trecho em itálico suave dos títulos: "Sobre <em>mim</em>." */
+h1 em,
+h2 em {
+  color: var(--text-soft);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.title-dot {
+  color: var(--accent);
+}
+
+.eyebrow {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.24em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.eyebrow span {
+  color: var(--accent);
 }
 
 h3 {
@@ -127,13 +166,13 @@ code {
 .button {
   align-items: center;
   background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
   color: var(--text-h);
   display: inline-flex;
-  font-weight: 600;
+  font-weight: 500;
   gap: 6px;
-  padding: 12px 20px;
+  padding: 13px 24px;
   text-decoration: none;
   transition: border-color 0.2s, background 0.2s, transform 0.2s;
 }

@@ -25,9 +25,16 @@ em um rodapé. Isso mantém a página enxuta e dispensa qualquer serviço extern
 
 ## Projetos curados
 
-A seção de projetos usa dados escritos em `src/data/projects.ts`, inspirados no
-formato nome, impacto e stack. A API do GitHub apenas complementa (estrelas),
-evitando que o limite de requisições ou uma falha de rede esvazie a seção.
+A seção de projetos usa dados escritos em `src/data/projects.ts` (nome, resumo,
+stack, demo e imagem opcionais). Não há chamada à API do GitHub: o site não
+depende de rede externa nem do limite de requisições, e o conteúdo é revisado
+no próprio código. O campo de impacto foi removido por decisão do autor.
+
+## Terminal restrito aos projetos
+
+O visual de terminal aparece só no painel de projetos, que simula o prompt de
+comando com o resumo, a stack e o `git clone` do repositório. O restante do site
+usa um tema claro e limpo, para manter a leitura e a identidade pessoal.
 
 ## Escopo incremental
 

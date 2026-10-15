@@ -2,18 +2,18 @@
 	align-items: center;
 	background: transparent;
 	border: 1px solid var(--border);
-	border-radius: 8px;
+	border-radius: 50%;
 	color: var(--text-h);
 	cursor: pointer;
 	display: inline-flex;
-	font-size: 1.1rem;
-	height: 40px;
+	font-size: 0.85rem;
+	height: 34px;
 	justify-content: center;
-	transition: border-color 0.2s, background 0.2s;
-	width: 40px;
+	transition: border-color 0.2s;
+	width: 34px;
 }
 
-.theme-toggle:hover {
-	background: var(--accent-bg);
-	border-color: var(--accent-border);
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+	border-color: var(--border-strong);
 }

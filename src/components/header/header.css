@@ -1,15 +1,13 @@
 .site-header {
-	background: color-mix(in srgb, var(--bg) 85%, transparent);
-	backdrop-filter: blur(12px);
-	border-bottom: 1px solid var(--border);
-	top: 0;
+	padding-top: 24px;
+	position: relative;
 	z-index: 50;
 }
 
 .site-header__inner {
 	align-items: center;
 	display: flex;
-	gap: 24px;
+	gap: 30px;
 	height: var(--header-height);
 	justify-content: space-between;
 	margin: 0 auto;
@@ -19,6 +17,7 @@
 
 .site-header__brand {
 	color: var(--text-h);
+	font-size: 1rem;
 	font-weight: 700;
 	letter-spacing: -0.01em;
 	text-decoration: none;
@@ -26,21 +25,22 @@
 
 .site-header__nav {
 	display: flex;
-	gap: 28px;
+	gap: 30px;
 	margin-left: auto;
 }
 
 .site-header__nav a {
-	color: var(--text);
-	font-size: 0.95rem;
-	font-weight: 500;
+	color: var(--text-muted);
+	font-family: var(--ubuntu);
+	font-size: 0.9rem;
+	font-weight: 400;
 	text-decoration: none;
 	transition: color 0.2s;
 }
 
 .site-header__nav a:hover,
 .site-header__nav a:focus-visible {
-	color: var(--accent);
+	color: var(--text-h);
 }
 
 .site-header__actions {
@@ -54,6 +54,10 @@
 }
 
 @media (max-width: 640px) {
+	.site-header {
+		padding-top: 8px;
+	}
+
 	.site-header__nav {
 		background: var(--bg);
 		border-bottom: 1px solid var(--border);
@@ -83,13 +87,18 @@
 		align-items: center;
 		background: transparent;
 		border: 1px solid var(--border);
-		border-radius: 8px;
+		border-radius: 50%;
 		color: var(--text-h);
 		cursor: pointer;
 		display: inline-flex;
-		font-size: 1.1rem;
-		height: 40px;
+		font-size: 0.85rem;
+		height: 34px;
 		justify-content: center;
-		width: 40px;
+		transition: border-color 0.2s;
+		width: 34px;
+	}
+
+	.site-header__menu-button:hover {
+		border-color: var(--border-strong);
 	}
 }

@@ -10,8 +10,7 @@ function About() {
 			</h2>
 			<p>
 				Sou estudante de {profile.course}, atualmente no {profile.semester}.
-				Gosto de transformar o que aprendo em aula em projetos reais e
-				publicá-los para evoluir com prática.
+				Sou uma pessoa que sempre está em busca de aprender coisas novas, e que gosta de desafios. Gosto de trabalhar em equipe, e de compartilhar conhecimento com outras pessoas.
 			</p>
 		</section>
 	)

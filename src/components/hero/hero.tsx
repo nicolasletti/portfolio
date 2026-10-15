@@ -11,8 +11,7 @@ function Hero() {
 				</h1>
 				<p className="hero-section__description">
 					Construo experiências digitais claras e úteis. Sou estudante de{' '}
-					{profile.course} e desenvolvedor focado em soluções digitais
-					intuitivas e eficientes.
+					{profile.course} e desenvolvedor focado em soluções digitais.
 				</p>
 				<div className="hero-section__actions">
 					<a className="button button--primary" href="#projetos">

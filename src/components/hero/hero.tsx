@@ -13,20 +13,7 @@ function Hero() {
 					Construo experiências digitais claras e úteis. Sou estudante de{' '}
 					{profile.course} e desenvolvedor focado em soluções digitais.
 				</p>
-				<div className="hero-section__actions">
-					<a className="button button--primary" href="#projetos">
-						Ver projetos
-					</a>
-				</div>
 			</div>
-
-			<img
-				className="hero-section__photo"
-				src={profile.avatar}
-				alt={`Foto de ${profile.name}`}
-				width={260}
-				height={260}
-			/>
 		</section>
 	)
 }

@@ -6,7 +6,7 @@
 	justify-content: space-between;
 	margin: 0 auto;
 	max-width: var(--content-width);
-	padding: 96px var(--gutter) 112px;
+	padding: 96px var(--gutter) 128px;
 }
 
 .hero-section__content {

@@ -2,7 +2,7 @@
 	border-top: 1px solid var(--border);
 	margin: 0 auto;
 	max-width: var(--content-width);
-	padding: 64px var(--gutter) 32px;
+	padding: 32px var(--gutter) 32px;
 }
 
 .site-footer__inner {
@@ -18,7 +18,7 @@
 
 .site-footer__links {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	gap: 8px;
 	list-style: none;
 	margin: 0;
@@ -33,7 +33,7 @@
 }
 
 .site-footer__links a {
-	color: var(--accent);
+	color: var(-- text-muted);
 	overflow-wrap: anywhere;
 	text-decoration: none;
 }

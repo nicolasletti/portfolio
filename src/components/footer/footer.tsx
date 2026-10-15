@@ -5,10 +5,18 @@ function Footer() {
 	return (
 		<footer className="site-footer" id="contato">
 			<div className="site-footer__inner">
+				<nav aria-label="Navegação do rodapé">
+					<ul className="site-footer__links">
+						<li><a href="#sobre">home</a></li>
+						<li><a href="#projetos">projects</a></li>
+						<li><a href="#contato">contact</a></li>
+					</ul>
+				</nav>
+
 				<ul className="site-footer__links">
 					<li>
 						<a href={profile.email} target="_blank" rel="noreferrer">
-							E-mail
+							e-mail
 						</a>
 					</li>
 					<li>
@@ -21,7 +29,6 @@ function Footer() {
 							linkedin
 						</a>
 					</li>
-
 				</ul>
 			</div>
 		</footer>

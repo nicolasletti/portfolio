@@ -19,10 +19,9 @@ function Header() {
 					className={`site-header__nav${isMenuOpen ? ' site-header__nav--open' : ''}`}
 					aria-label="Navegação principal"
 				>
-					<a href="#sobre" onClick={closeMenu}>Sobre</a>
-					<a href="#skills" onClick={closeMenu}>Skills</a>
-					<a href="#projetos" onClick={closeMenu}>Projetos</a>
-					<a href="#contato" onClick={closeMenu}>Contato</a>
+					<a href="#sobre" onClick={closeMenu}>home</a>
+					<a href="#projetos" onClick={closeMenu}>projects</a>
+					<a href="#contato" onClick={closeMenu}>contact</a>
 				</nav>
 
 				<div className="site-header__actions">

@@ -6,9 +6,10 @@
 }
 
 .site-footer__inner {
+	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
-	gap: 32px 64px;
+	gap: 16px 64px;
 	justify-content: space-between;
 }
 
@@ -33,7 +34,7 @@
 }
 
 .site-footer__links a {
-	color: var(-- text-muted);
+	color: var(--text-muted);
 	overflow-wrap: anywhere;
 	text-decoration: none;
 }

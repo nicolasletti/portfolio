@@ -31,7 +31,7 @@
 
 .site-header__nav a {
 	color: var(--text-muted);
-	font-family: var(--ubuntu);
+	font-family: var(--sans);
 	font-size: 0.9rem;
 	font-weight: 400;
 	text-decoration: none;

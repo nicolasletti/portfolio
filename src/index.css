@@ -24,7 +24,7 @@
   --term-bright: #fffdf2;
   --term-accent: #b5c17f;
 
-  --sans: 'Ubuntu', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: 'Syne', sans-serif;
   --heading: var(--sans);
   --mono: 'Ubuntu Mono', ui-monospace, Consolas, monospace;
 

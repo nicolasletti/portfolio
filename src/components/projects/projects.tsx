@@ -34,7 +34,7 @@ function Projects() {
     <section className="projects-section" id="projetos">
       <div className="projects-section__heading">
         <h2>
-          Projetos em <em>destaque</em>
+          Projetos em destaque
           <span className="title-dot">.</span>
         </h2>
 

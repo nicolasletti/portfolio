@@ -6,7 +6,7 @@ function Hero() {
 		<section className="hero-section" id="inicio">
 			<div className="hero-section__content">
 				<h1>
-					Nicolas <em>Letti</em>
+					Desenvolvedor Junior - Nicolas Letti
 					<span className="title-dot">.</span>
 				</h1>
 				<p className="hero-section__description">

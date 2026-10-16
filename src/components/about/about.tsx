@@ -5,7 +5,7 @@ function About() {
 	return (
 		<section className="about-section" id="sobre">
 			<h2>
-				Sobre <em>mim</em>
+				Sobre mim
 				<span className="title-dot">.</span>
 			</h2>
 			<p>

@@ -19,6 +19,11 @@ ordem: Início (com foto), Sobre, Skills, Projetos e rodapé de contato.
 - **Projetos:** carrossel com cartão de visualização à esquerda e o painel de
   terminal à direita (`type sobre.txt`, `type stack.txt` e `git clone` com botão
   de copiar). Os botões de repositório e demo ficam fora do terminal.
+- **Fundo do Início:** ilustração inspirada na capa de "Noites Brancas"
+  (prédios hachurados, sol e raios), feita só com CSS. Os traços usam a cor do
+  texto do tema com opacidade baixa, então acompanham o claro e o escuro, e
+  esmaecem atrás do texto. As camadas têm paralaxe leve com o mouse e a
+  rolagem, desligada com `prefers-reduced-motion`.
 - Os tokens (cores, fontes, raios) ficam em `src/index.css`.
 
 ## Princípios

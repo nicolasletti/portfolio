@@ -1,4 +1,15 @@
+/* O Hero sobe por trás do header (transparente) para o fundo cobrir o topo todo. */
 .hero-section {
+	--hero-overlap: calc(var(--header-height) + 24px);
+
+	isolation: isolate;
+	margin-top: calc(-1 * var(--hero-overlap));
+	overflow: hidden;
+	padding-top: var(--hero-overlap);
+	position: relative;
+}
+
+.hero-section__inner {
 	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
@@ -7,6 +18,7 @@
 	margin: 0 auto;
 	max-width: var(--content-width);
 	padding: 96px var(--gutter) 128px;
+	position: relative;
 }
 
 .hero-section__content {
@@ -33,8 +45,137 @@
 	width: clamp(180px, 24vw, 260px);
 }
 
+.hero-art {
+	color: var(--text);
+	inset: 0;
+	mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / 0.25) 28%, #000 58%);
+	opacity: 0.14;
+	overflow: hidden;
+	pointer-events: none;
+	position: absolute;
+	z-index: -1;
+}
+
+:root[data-theme='dark'] .hero-art {
+	opacity: 0.12;
+}
+
+.hero-art__layer {
+	inset: -40px;
+	position: absolute;
+	transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.hero-art__layer--back {
+	transform: translate3d(
+		calc(var(--mx, 0) * 10px),
+		calc(var(--my, 0) * 6px + var(--sy, 0) * 0.2px),
+		0
+	);
+}
+
+.hero-art__layer--sun {
+	transform: translate3d(
+		calc(var(--mx, 0) * 19px),
+		calc(var(--my, 0) * 14px + var(--sy, 0) * 0.3px),
+		0
+	);
+}
+
+.hero-art__layer--front {
+	transform: translate3d(
+		calc(var(--mx, 0) * 31px),
+		calc(var(--my, 0) * 24px + var(--sy, 0) * 0.08px),
+		0
+	);
+}
+
+.hero-art__building {
+	bottom: 0;
+	position: absolute;
+}
+
+.hero-art__building--horizontal {
+	background: repeating-linear-gradient(0deg, currentColor 0 2px, transparent 2px 7px);
+}
+
+.hero-art__building--diagonal {
+	background: repeating-linear-gradient(-55deg, currentColor 0 3px, transparent 3px 10px);
+}
+
+.hero-art__building--vertical {
+	background: repeating-linear-gradient(90deg, currentColor 0 2px, transparent 2px 11px);
+}
+
+.hero-art__building--dots {
+	background: radial-gradient(circle, currentColor 1.5px, transparent 1.8px) 0 0 / 9px 9px;
+}
+
+.hero-art__sun {
+	--sun-size: 200px;
+
+	background:
+		repeating-linear-gradient(0deg, currentColor 0 1.5px, transparent 1.5px 5px),
+		repeating-linear-gradient(90deg, currentColor 0 1.5px, transparent 1.5px 6px);
+	border-radius: 50%;
+	height: var(--sun-size);
+	left: calc(68% - var(--sun-size) / 2);
+	position: absolute;
+	top: calc(40% - var(--sun-size) / 2);
+	width: var(--sun-size);
+}
+
+.hero-art__rays {
+	height: 0;
+	left: 68%;
+	position: absolute;
+	top: 40%;
+	transform: rotate(calc(var(--mx, 0) * 5deg)) scale(var(--rays-scale, 1));
+	transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+	width: 0;
+}
+
+/* Raios afinam perto do sol e têm bordas irregulares, como na gravura. */
+.hero-art__ray {
+	background: currentColor;
+	clip-path: polygon(0 40%, 30% 24%, 55% 15%, 100% 0, 100% 100%, 62% 86%, 30% 74%, 0 60%);
+	left: 0;
+	position: absolute;
+	top: 0;
+	transform-origin: 0 50%;
+}
+
+.hero-art__pole {
+	background: currentColor;
+	bottom: 0;
+	position: absolute;
+}
+
 @media (max-width: 640px) {
 	.hero-section {
+		--hero-overlap: calc(var(--header-height) + 8px);
+	}
+
+	.hero-section__inner {
 		padding: 56px var(--gutter) 72px;
+	}
+
+	.hero-art {
+		mask-image: linear-gradient(180deg, rgb(0 0 0 / 0.35) 0%, rgb(0 0 0 / 0.35) 45%, #000 85%);
+	}
+
+	.hero-art__sun {
+		--sun-size: 130px;
+	}
+
+	.hero-art__rays {
+		--rays-scale: 0.65;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero-art__layer,
+	.hero-art__rays {
+		transition: none;
 	}
 }

@@ -12,3 +12,14 @@
 .about-section p:not(.eyebrow) + p {
 	margin-top: 12px;
 }
+
+.about-section-img {
+	display: flex;
+	gap: 16px;
+}
+
+.about-section-img img {
+	border-radius: 10px;
+	height: 597px;
+	width: 448px;
+}

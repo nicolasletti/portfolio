@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Instruções de agentes de IA
+CLAUDE.md
+AGENTS.md
+.claude/

@@ -1,14 +1,10 @@
-export type Project = {
-  /** Nome do repositório em github.com/<usuário>/<repo>. */
-  repo: string
-  /** Texto curto de categoria exibido acima da imagem. */
+export type Project = {  repo: string
   label: string
   name: string
   subtitle: string
   about: string
   stack: string[]
   demoUrl?: string
-  /** Caminho de um print ou GIF em `public/`. Sem ele, exibe um painel neutro. */
   image?: string
   imageAlt?: string
 }

@@ -2,6 +2,7 @@ import Header from './components/header/header'
 import Hero from './components/hero/hero'
 import About from './components/about/about'
 import Projects from './components/projects/projects'
+import SocialProjects from './components/social-projects/social-projects'
 import Footer from './components/footer/footer'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Hero />
         <About />
         <Projects />
+        <SocialProjects />
       </main>
       <Footer />
     </>

@@ -8,12 +8,12 @@
 	padding: 56px var(--gutter);
 }
 
-.about-section p:not(.eyebrow) {
+.about-section p {
 	color: var(--text);
 	max-width: 680px;
 }
 
-.about-section p:not(.eyebrow) + p {
+.about-section p + p {
 	margin-top: 12px;
 }
 

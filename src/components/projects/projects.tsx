@@ -1,11 +1,4 @@
-import { useState } from 'react'
-import { profile } from '../../data/profile'
-import { projects } from '../../data/projects'
 import './projects.css'
-
-function pad(value: number) {
-  return String(value).padStart(2, '0')
-}
 
 function Projects() {
   return (

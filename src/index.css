@@ -12,23 +12,11 @@
   --accent-bg: rgba(95, 110, 51, 0.1);
   --accent-border: rgba(95, 110, 51, 0.5);
   --on-accent: #fffdf2;
-  --shadow:
-    rgba(43, 42, 38, 0.1) 0 10px 15px -3px, rgba(43, 42, 38, 0.05) 0 4px 6px -2px;
-
-  /* Painel de terminal: mantém o mesmo visual nos dois temas. */
-  --term-bg: #000000;
-  --term-bar: #161616;
-  --term-border: #2a2a2a;
-  --term-text: #e8e5d6;
-  --term-muted: #8f8b7c;
-  --term-bright: #fffdf2;
-  --term-accent: #b5c17f;
 
   --sans: 'Syne', sans-serif;
   --heading: var(--sans);
   --mono: 'Ubuntu Mono', ui-monospace, Consolas, monospace;
 
-  --radius: 12px;
   --content-width: 1120px;
   --gutter: 32px;
   --header-height: 72px;
@@ -69,8 +57,6 @@
   --accent-bg: rgba(181, 193, 127, 0.12);
   --accent-border: rgba(181, 193, 127, 0.5);
   --on-accent: #14140f;
-  --shadow:
-    rgba(0, 0, 0, 0.5) 0 10px 15px -3px, rgba(0, 0, 0, 0.3) 0 4px 6px -2px;
   color-scheme: dark;
 }
 
@@ -134,18 +120,6 @@ h2 em {
   color: var(--accent);
 }
 
-.eyebrow {
-  color: var(--text-muted);
-  font-size: 0.75rem;
-  letter-spacing: 0.24em;
-  margin-bottom: 12px;
-  text-transform: uppercase;
-}
-
-.eyebrow span {
-  color: var(--accent);
-}
-
 h3 {
   margin: 0;
 }
@@ -161,37 +135,6 @@ code {
   border-radius: 4px;
   color: var(--text-h);
   background: var(--code-bg);
-}
-
-.button {
-  align-items: center;
-  background: transparent;
-  border: 1px solid var(--border-strong);
-  border-radius: 999px;
-  color: var(--text-h);
-  display: inline-flex;
-  font-weight: 500;
-  gap: 6px;
-  padding: 13px 24px;
-  text-decoration: none;
-  transition: border-color 0.2s, background 0.2s, transform 0.2s;
-}
-
-.button:hover {
-  background: var(--accent-bg);
-  border-color: var(--accent-border);
-  transform: translateY(-1px);
-}
-
-.button--primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--on-accent);
-}
-
-.button--primary:hover {
-  background: var(--accent);
-  filter: brightness(1.1);
 }
 
 .skip-link {

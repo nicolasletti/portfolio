@@ -4,14 +4,12 @@ import './hero.css'
 
 /* Fundo inspirado na capa de "Noites Brancas": prédios hachurados, sol e raios. */
 const buildings = [
-	{ pattern: 'vertical', left: 2, width: 5, height: 70 },
 	{ pattern: 'dots', left: 9, width: 3, height: 55 },
 	{ pattern: 'diagonal', left: 31, width: 6, height: 62 },
 	{ pattern: 'horizontal', left: 39, width: 12, height: 80 },
 	{ pattern: 'diagonal', left: 53, width: 7, height: 58 },
 	{ pattern: 'horizontal', left: 62, width: 14, height: 90 },
 	{ pattern: 'diagonal', left: 78, width: 6, height: 66 },
-	{ pattern: 'vertical', left: 80.5, width: 2, height: 40 },
 	{ pattern: 'horizontal', left: 86, width: 9, height: 94 },
 	{ pattern: 'dots', left: 96, width: 4, height: 52 },
 ]
